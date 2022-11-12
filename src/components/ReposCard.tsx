@@ -1,14 +1,23 @@
-import { MouseEvent } from "react";
+import { useState, MouseEvent } from "react";
 import { IRepo } from "../models/models";
 import { useActions } from "../hooks/actions";
+import { useAppSelector } from "../hooks/redux";
 import "./ReposCard.css";
 
 export function ReposCard({ repo }: { repo: IRepo }) {
-	const { addFavourite } = useActions();
+	const { addFavourite, removeFavourite } = useActions();
+	const { favourites } = useAppSelector((state) => state.github);
+	const [isFav, setIsFav] = useState(favourites.includes(repo.html_url));
 
 	const addToFavourite = (event: MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		addFavourite(repo.html_url);
+		setIsFav(false);
+	};
+	const removeFromFavourite = (event: MouseEvent<HTMLButtonElement>) => {
+		event.preventDefault();
+		removeFavourite(repo.html_url);
+		setIsFav(true);
 	};
 
 	return (
@@ -25,12 +34,21 @@ export function ReposCard({ repo }: { repo: IRepo }) {
 					</div>
 				</a>
 				<div className="card-action">
-					<button
-						className="btn-floating waves-effect orange"
-						onClick={addToFavourite}
-					>
-						<i className="material-icons">add</i>
-					</button>
+					{isFav ? (
+						<button
+							className="btn-floating waves-effect red"
+							onClick={removeFromFavourite}
+						>
+							<i className="material-icons">delete</i>
+						</button>
+					) : (
+						<button
+							className="btn-floating waves-effect orange"
+							onClick={addToFavourite}
+						>
+							<i className="material-icons">add</i>
+						</button>
+					)}
 				</div>
 			</div>
 		</div>

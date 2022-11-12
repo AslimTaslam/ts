@@ -8,7 +8,7 @@ function FavouritesPage() {
 	}
 
 	return (
-		<div>
+		<div className="container">
 			<ul className="collection with-header">
 				<li className="collection-header">
 					<h4>Favourites</h4>

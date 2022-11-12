@@ -1,0 +1,12 @@
+.repos-link {
+	color: #000;
+}
+
+.repos-card:hover {
+	background: #eeeeee;
+	cursor: pointer;
+}
+
+.stat-card {
+	padding-right: 7px;
+}

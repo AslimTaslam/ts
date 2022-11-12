@@ -1,0 +1,18 @@
+.autocomplete-window {
+	margin-top: 0px;
+	max-height: 300px;
+	overflow: scroll;
+}
+
+.autocomplete-item {
+	padding: 9px;
+	border-bottom: solid #9e9e9e 1px;
+}
+
+.autocomplete-item:hover {
+	padding: 9px;
+	border-bottom: solid #9e9e9e 1px;
+	color: white;
+	background: gray;
+	cursor: pointer;
+}
